@@ -2,6 +2,15 @@
 
 - create-react-app vite@latest
 - configured TailwindCSS
+- Header
+- Routing of App
+- Login Form
+- Sign up Form
+- Form Validation
+- Firebase setup
+- Deploying our app to production
+- Implement Sign In user API
+- Created Redux Store with userSlice
 
 
 # Features
