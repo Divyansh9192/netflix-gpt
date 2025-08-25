@@ -11,7 +11,10 @@
 - Deploying our app to production
 - Implement Sign In user API
 - Created Redux Store with userSlice
-
+- BugFix: Sign up user displayName and profile picture update
+- BugFix: if the user is not logged in Redirect /browse to Login page and vice-versa
+- Unsubscribed  to the onAuthStateChange callback
+- Added harcoded values to Constant file
 
 # Features
 - Browse(after authentication)

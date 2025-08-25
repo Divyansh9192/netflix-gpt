@@ -7,12 +7,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { AVATAR_URL, BgIMG_URL } from "../utils/constants";
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const toggleSignIn = () => {
@@ -21,6 +20,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
+  const confirmPassword = useRef(null);
 
   const handleButtonClick = (e) => {
     const message = checkValidData(email.current.value, password.current.value);
@@ -31,6 +31,10 @@ const Login = () => {
     //sign in/ sign up logic
     if (!isSignIn) {
       //Sign up logic
+      if(confirmPassword.current.value!=password.current.value){
+        setErrorMessage("Password mismatch, Try again!")
+        return
+      }
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -38,10 +42,10 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed up
-          const user = userCredential.user;
+          // const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/149302062?v=4",
+            photoURL: AVATAR_URL,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -53,8 +57,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              console.log(user);
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -73,14 +75,10 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // console.log(user)
-          navigate("/browse");
+          const { uid, email, displayName, photoURL } = userCredential.user;
+          dispatch(addUser({ uid, email, displayName, photoURL }));
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
           setErrorMessage("User Not Found");
         });
     }
@@ -89,17 +87,14 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/3e4bd046-85a3-40e1-842d-fa11cec84349/web/IN-en-20250818-TRIFECTA-perspective_4bd1b66d-bbb6-4bc6-ba8f-ecbba53a1278_large.jpg"
-          alt="bg-img"
-        />
+        <img src={BgIMG_URL} alt="bg-img" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80"></div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="absolute w-4/12 p-12 bg-black/80 rounded-2xl my-24 mx-auto right-0 left-0"
+        className="absolute w-3/12 p-12 bg-black/80 my-60 mx-auto right-0 left-0"
       >
         <h1 className="font-bold py-4 text-3xl text-white">
           {isSignIn ? "Sign In" : "Sign Up"}
@@ -109,31 +104,32 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Full Name"
-            className="bg-gray-400/70 p-2 my-2 rounded w-full"
+            className="bg-gray-400/70 p-3 my-2 rounded w-full"
           />
         )}
         <input
           ref={email}
           type="text"
           placeholder="Email Address"
-          className="bg-gray-400/70 p-2 my-2 rounded w-full focus:bg-white"
+          className="bg-gray-400/70 p-3 my-2 rounded w-full focus:bg-white"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="bg-gray-400/70 p-2 my-2 rounded w-full focus:bg-white"
+          className="bg-gray-400/70 p-3 my-2 rounded w-full focus:bg-white"
         />
         {!isSignIn && (
           <input
+            ref={confirmPassword}
             type="password"
             placeholder="Confirm Password"
-            className="bg-gray-400/70 p-2 my-2 rounded w-full focus:bg-white"
+            className="bg-gray-400/70 p-3 my-2 rounded w-full focus:bg-white"
           />
         )}
         <p className="text-red-700">{errorMessage}</p>
         <button
-          className=" bg-red-700  p-2 my-4 rounded w-full "
+          className=" bg-red-700  p-2 my-6 rounded w-full cursor-pointer"
           onClick={handleButtonClick}
         >
           {isSignIn ? "Sign In" : "Sign Up"}
@@ -145,7 +141,7 @@ const Login = () => {
           className="text-white cursor-pointer underline"
           onClick={toggleSignIn}
         >
-          {isSignIn ? "Sign In Now." : "Sign Up"}
+          {isSignIn ? "Sign Up Now." : "Sign In."}
         </span>
       </form>
     </div>
