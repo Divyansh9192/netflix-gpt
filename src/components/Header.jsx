@@ -50,7 +50,7 @@ const Header = () => {
           <img className="w-12 h-12 mx-10" src={AVATAR_URL} alt="userIcon" />
           <button
             onClick={handleSignout}
-            className="text-white text-xl font-macondo font-bold hover:underline underline-offset-2 hover:text-red-800"
+            className="text-white text-xl font-macondo font-bold hover:underline underline-offset-2 hover:text-gray-200"
           >
             Sign Out
           </button>

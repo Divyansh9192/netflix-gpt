@@ -15,7 +15,11 @@
 - BugFix: if the user is not logged in Redirect /browse to Login page and vice-versa
 - Unsubscribed  to the onAuthStateChange callback
 - Added harcoded values to Constant file
-
+- Registered TMDB API & create an app and get access token  
+- Get data from TMDB now playing movies list API
+- created custom hook for now playing movies
+- create a movieSlice
+- Embedded with U-tube Bg-video 
 # Features
 - Browse(after authentication)
  - Header
