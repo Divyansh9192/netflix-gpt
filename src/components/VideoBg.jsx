@@ -8,13 +8,13 @@ const VideoBg = ({ movieId }) => {
 
   if (!trailerVideo) return;
   return (
-    <div className="w-screen">
+    <div className="w-full overflow-x-hidden">
       <iframe
-        className="w-screen aspect-video pointer-events-none"
+        className="w-screen overflow-x-hidden aspect-video pointer-events-none"
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +
-          "?&autoplay=1&mute=1&controls=0&loop=1&modestbranding=1"
+          "?&autoplay=1&mute=1&controls=0&loop=1&rel=0&modestbranding=1"
         }
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

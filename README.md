@@ -20,6 +20,9 @@
 - created custom hook for now playing movies
 - create a movieSlice
 - Embedded with U-tube Bg-video 
+- Built Movie list
+- Build Movie list
+- Made Browse page amazing
 # Features
 - Browse(after authentication)
  - Header
