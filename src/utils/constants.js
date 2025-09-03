@@ -23,16 +23,19 @@ export const SUPPORTED_LANGUAGES = [
     identifier: "en",
     name: "English",
   },
-  { 
+  {
     identifier: "hindi",
-     name: "Hindi" 
+    name: "Hindi",
   },
-  { 
-    identifier: "sp", 
-    name: "Spanish" 
+  {
+    identifier: "sp",
+    name: "Spanish",
   },
   {
     identifier: "cn",
-    name: "Chinese"
-  }
+    name: "Chinese",
+  },
 ];
+
+export const GEMINI_KEY =
+  "AIzaSyCYyb4tqJ-D2TRY8M3gDXqBw4gtaGfvZr4";
