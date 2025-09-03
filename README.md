@@ -23,6 +23,9 @@
 - Built Movie list
 - Build Movie list
 - Made Browse page amazing
+- GPT search Page
+- GPT search bar
+- Multi-language Features in our App
 # Features
 - Browse(after authentication)
  - Header

@@ -4,10 +4,13 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { AVATAR_URL, LOGO_URL } from "../utils/constants";
+import { AVATAR_URL, LOGO_URL, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configLangSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector(store => store.gpt.showGptSearch)
   const navigate = useNavigate();
   const handleSignout = () => {
     signOut(auth)
@@ -19,6 +22,14 @@ const Header = () => {
         // An error happened.
         navigate("/error");
       });
+  };
+  const handleGptSearch = () => {
+    // Toggle the GPT search
+    dispatch(toggleGptSearchView());
+  };
+  const handleLangChange = (e) => {
+    // console.log(e.target.value);
+    dispatch(changeLanguage(e.target.value))
   };
   useEffect(() => {
     const unsubscibe = onAuthStateChanged(auth, (user) => {
@@ -47,7 +58,23 @@ const Header = () => {
       <img className="w-[150px]" src={LOGO_URL} alt="logo" />
       {user && (
         <div className="flex p-2">
-          <img className="w-12 h-12 mx-10" src={AVATAR_URL} alt="userIcon" />
+          {showGptSearch && <select
+            className="p-2 m-2 bg-gray-500 text-white"
+            onChange={handleLangChange}
+          >
+            {SUPPORTED_LANGUAGES.map((lang) => (
+              <option key={lang.identifier} value={lang.identifier}>
+                {lang.name}
+              </option>
+            ))}
+          </select>}
+          <button
+            onClick={handleGptSearch}
+            className="p-2 m-2 text-white cursor-pointer bg-purple-800 hover:bg-purple-950 hover:text-gray-200 rounded-lg"
+          >
+            {showGptSearch?"Homepage":"GPT-Search"}
+          </button>
+          <img className="w-12 h-12 mx-4" src={AVATAR_URL} alt="userIcon" />
           <button
             onClick={handleSignout}
             className="text-white text-xl  font-bold hover:underline underline-offset-2 hover:text-gray-200"
