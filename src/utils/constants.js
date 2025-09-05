@@ -12,7 +12,7 @@ export const API_CONST = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MWU3NWE3ODA2ZWQzNTA1NTZhOGFkNWYwZWVjNjdjMCIsIm5iZiI6MTc1NjExOTU0OC4wNzAwMDAyLCJzdWIiOiI2OGFjNDFmY2I4M2FiMWI5Yzc2NzA5NTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.VRq5WLSKJ2f0o-oYWWhfpzMy5K35EaZwlWPQuh82erk",
+      "Bearer "+import.meta.env.VITE_TMDB_KEY,
   },
 };
 
@@ -37,5 +37,5 @@ export const SUPPORTED_LANGUAGES = [
   },
 ];
 
-export const GEMINI_KEY =
-  "AIzaSyCYyb4tqJ-D2TRY8M3gDXqBw4gtaGfvZr4";
+export const GEMINI_KEY = import.meta.env.VITE_GEMINI_KEY;
+

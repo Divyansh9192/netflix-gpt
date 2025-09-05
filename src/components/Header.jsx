@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { AVATAR_URL, LOGO_URL, SUPPORTED_LANGUAGES } from "../utils/constants";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { removeGptMovieResult, toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configLangSlice";
 const Header = () => {
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const Header = () => {
   const handleGptSearch = () => {
     // Toggle the GPT search
     dispatch(toggleGptSearchView());
+    dispatch(removeGptMovieResult());
   };
   const handleLangChange = (e) => {
     // console.log(e.target.value);
