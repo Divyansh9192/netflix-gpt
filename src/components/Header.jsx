@@ -55,10 +55,10 @@ const Header = () => {
     return () => unsubscibe();
   }, []);
   return (
-    <div className="absolute bg-gradient-to-b from-black w-full flex justify-between px-20 z-10">
-      <img className="w-[150px]" src={LOGO_URL} alt="logo" />
+    <div className="absolute bg-gradient-to-b from-black w-full flex flex-col md:flex-row md:flex justify-between md:px-20 z-10">
+      <img className="w-[150px] mx-auto md:mx-0" src={LOGO_URL} alt="logo" />
       {user && (
-        <div className="flex p-2">
+        <div className="flex p-2 justify-around">
           {showGptSearch && <select
             className="p-2 m-2 bg-gray-500 text-white"
             onChange={handleLangChange}
@@ -75,10 +75,10 @@ const Header = () => {
           >
             {showGptSearch?"Homepage":"GPT-Search"}
           </button>
-          <img className="w-12 h-12 mx-4" src={AVATAR_URL} alt="userIcon" />
+          <img className="w-12 h-12 mx-4 hidden md:inline-block border" src={AVATAR_URL} alt="userIcon" />
           <button
             onClick={handleSignout}
-            className="text-white text-xl  font-bold hover:underline underline-offset-2 hover:text-gray-200"
+            className="text-white md:text-xl rounded-lg px-2 m-1 md:px-0 bg-red-900 md:bg-red-50/0   hover:underline underline-offset-2 hover:text-gray-200"
           >
             Sign Out
           </button>

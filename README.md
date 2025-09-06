@@ -26,6 +26,12 @@
 - GPT search Page
 - GPT search bar
 - Multi-language Features in our App
+- Get Gemini API key
+- fetched movie suggestion
+- created gpt slice
+- memoization
+- added .env file
+- Made our Site responsive
 # Features
 - Browse(after authentication)
  - Header

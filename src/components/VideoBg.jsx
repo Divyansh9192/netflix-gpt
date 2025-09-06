@@ -8,7 +8,7 @@ const VideoBg = ({ movieId }) => {
 
   if (!trailerVideo) return;
   return (
-    <div className="w-full overflow-x-hidden">
+    <div className=" pt-[30%]  bg-black md:pt-0 w-full overflow-x-hidden">
       <iframe
         className="w-screen overflow-x-hidden aspect-video pointer-events-none"
         src={

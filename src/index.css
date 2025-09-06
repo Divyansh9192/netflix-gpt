@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Macondo&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Macondo&family=Poppins&display=swap");
 @import "tailwindcss";
 
 .font-macondo {
-  font-family: 'Macondo', sans-serif;
+  font-family: "Macondo", sans-serif;
 }
 @layer utilities {
-      /* Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-      /* IE and Edge */
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        /* Firefox */
-        scrollbar-width: none;
-      }
-    }
+  /* IE and Edge */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+  }
+}
