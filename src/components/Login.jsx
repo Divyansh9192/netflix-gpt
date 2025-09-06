@@ -87,7 +87,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img src={BgIMG_URL} alt="bg-img" className="h-screen object-cover" />
+        <img src={BgIMG_URL} alt="bg-img" className="h-screen w-screen object-cover" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80"></div>
       <form
